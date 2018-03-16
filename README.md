@@ -1,5 +1,7 @@
 # Urheilutapahtumajarjestelma
 
+Herokulinkki: https://urheilutapahtumajarjestelma.herokuapp.com/
+
 Tehtävänä on tehdä Pirkankierros-tapahtumiin järjestelmä tapahtumien, tapahtumiin osallistujien ja osallistujien tulosten hallintaan. Tapahtumia ovat hiihto, pyöräily, soutu ja hölkkä. Osallistujat ilmoittautuvat tapahtumien sarjoihin, esimerkiksi lyhyeen, normaalin tai pitkän matkan pyöräilyyn. Osallistuja voi myös halutessaan ilmoittautua useampaan sarjaan samassa tapahtumassa.
 
 Osallistujista tallennetaan etunimi, sukunimi, sähköposti, puhelinnumero, postinumero, postitoimipaikka, maa, suoritukset ja osallistumiset.
