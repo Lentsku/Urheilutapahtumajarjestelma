@@ -12,7 +12,7 @@ Osallistujista tulisi myös tarjota tulostietoja, esimerkiksi osallistujan läht
 Lähtökohtaisesti koko sovelluksen käyttäminen tulisi olla mahdollista vain henkilökunnan tunnuksilla. Jatkokehityksessä voitaisiin osallistujille tarjota kirjautumismahdollisuus, joilla katsoa ja muokata omia tietojaan ja nähdä omat tulokset ja suoritushistorian.
 
 Toiminnot:
-- Osallistujien tietojen lisääminen, muokkaaminen, poistaminen¬ ja tarkistaminen
+- Osallistujien tietojen lisääminen, muokkaaminen, poistaminen ja tarkistaminen
 - Osallistujien osallistumisen lisääminen, muokkaaminen, poistaminen ja tarkistaminen
 - Osallistujien tulostietojen lisääminen, muokkaaminen ja tarkistaminen
 - Pääsy sovellukseen vain henkilökunnan tunnuksilla kirjautumalla
