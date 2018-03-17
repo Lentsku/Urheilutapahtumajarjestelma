@@ -1,6 +1,6 @@
-# Urheilutapahtumajarjestelma
+# Urheilutapahtumajärjestelmä
 
-Tehtävänä on tehdä urheilutapahtumajärjestelmä tapahtumien, tapahtumiin osallistujien ja osallistujien tulosten hallintaan. Erilaisiaa tapahtumia ovat hiihto, pyöräily, soutu ja hölkkä. Osallistujat ilmoittautuvat tapahtumien sarjoihin, esimerkiksi lyhyeen, normaalin tai pitkän matkan pyöräilyyn. Osallistuja voi myös halutessaan ilmoittautua useampaan sarjaan samassa tapahtumassa.
+Tehtävänä on tehdä urheilutapahtumajärjestelmä tapahtumien, tapahtumiin osallistujien ja osallistujien tulosten hallintaan. Erilaisia tapahtumia ovat hiihto, pyöräily, soutu ja hölkkä. Osallistujat ilmoittautuvat tapahtumien sarjoihin, esimerkiksi lyhyeen, normaalin tai pitkän matkan pyöräilyyn. Osallistuja voi myös halutessaan ilmoittautua useampaan sarjaan samassa tapahtumassa.
 
 Osallistujista tallennetaan etunimi, sukunimi, sähköposti, puhelinnumero, postinumero, postitoimipaikka, suoritukset ja osallistumiset.
 Jokaiselle osallistujalle arvotaan jokaisen tapahtuman kohdalla uniikki kilpailunumero, mutta soudussa on muista tapahtumista poiketen joukkueet, joten kaikilla samassa veneessä olevilla osallistujilla on yhteinen kilpailunumero.
