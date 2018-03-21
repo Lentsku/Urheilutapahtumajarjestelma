@@ -4,6 +4,7 @@ app = Flask(__name__)
 
 # Tuodaan SQLAlchemy käyttöön
 from flask_sqlalchemy import SQLAlchemy
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Käytetään tasks.db-nimistä SQLite-tietokantaa. Kolme vinoviivaa
 # kertoo, että tiedosto sijaitsee tämän sovelluksen tiedostojen
