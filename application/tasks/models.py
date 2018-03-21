@@ -10,4 +10,5 @@ class Task(db.Model):
     done = db.Column(db.Boolean, nullable=False)
 
     def __init__(self, name):
-        self.name = __name__self.done = False
+        self.name = name
+        self.done = False
