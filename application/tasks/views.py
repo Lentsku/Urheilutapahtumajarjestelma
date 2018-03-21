@@ -1,8 +1,8 @@
-from application import application
+from application import app
 from flask import render_template, request
 
 @app.route("/tasks/new/")
-def tasks_farm():
+def tasks_form():
     return render_template("tasks/new.html")
 
 @app.route("/tasks/", methods=["POST"])
