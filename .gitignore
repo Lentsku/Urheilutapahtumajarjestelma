@@ -105,5 +105,4 @@ venv.bak/
 tasks.db
 hello.py
 demo.html
-__pycache__
 *.pyc
