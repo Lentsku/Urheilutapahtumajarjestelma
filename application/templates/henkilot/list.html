@@ -14,10 +14,17 @@
       <th>Puhelin</th>
       <th></th>
     </tr>
-    {% for task in tasks %}
+    {% for henkilo in henkilot %}
     <tr>
-      <td>{{ task.name }}</td>
-      <td>{{ task.done }}</td>
+      <td>{{ henkilo.etunimi }}</td>
+      <td>{{ henkilo.sukunimi }}</td>
+      <td>{{ henkilo.sukuEtu }}</td>
+      <td>{{ henkilo.osoite }}</td>
+      <td>{{ henkilo.postinumero }}</td>
+      <td>{{ henkilo.postitoimipaikka }}</td>
+      <td>{{ henkilo.maa }}</td>
+      <td>{{ henkilo.sahkoposti }}</td>
+      <td>{{ henkilo.puhelin }}</td>
     </tr>
     {% endfor %}
   </table>

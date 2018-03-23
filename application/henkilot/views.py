@@ -3,15 +3,15 @@ from flask import redirect, render_template, request, url_for
 from application.henkilot.models import Henkilo
 
 @app.route('/henkilot', methods=['GET'])
-def tasks_index():
+def henkilot_index():
     return render_template('henkilo/list.html', henkilot = Task.query.all())
 
 @app.route('/henkilot/new/')
-def tasks_form():
+def henkilot_form():
     return render_template('henkilot/new.html')
 
 @app.route('/tasks/', methods=['POST'])
-def tasks_create():
+def henkilot_create():
     h = Henkilo(request.form.get('etunimi', 'sukunimi', 'sukuEtu', 'osoite', postinumero, 'postitoimipaikka', 'maa', 'sahkoposti', 'puhelin'))
 
     db.session().add(h)
