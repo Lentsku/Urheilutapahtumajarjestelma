@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('tasks_create') }}">
+<form method="POST" action="{{ url_for('henkilot_create') }}">
   <input type="text" name="etunimi"/>
   <input type="text" name="sukunimi"/>
   <input type="text" name="sukuEtu"/>
   <input type="text" name="osoite"/>
-  <input type="number" name="postinumero"/>
+  <input type="text" name="postinumero"/>
   <input type="text" name="postitoimipaikka"/>
   <input type="text" name="maa"/>
   <input type="text" name="sahkoposti"/>

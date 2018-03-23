@@ -6,7 +6,7 @@ class Henkilo(db.Model):
     sukunimi = db.Column(db.String(63), nullable=False)
     sukuEtu = db.Column(db.String(7), nullable=False)
     osoite = db.Column(db.String(255), nullable=False)
-    postinumero = db.Column(db.Integer)
+    postinumero = db.Column(db.String(63), nullable=False)
     postitoimipaikka = db.Column(db.String(144), nullable=False)
     maa = db.Column(db.String(144), nullable=True)
     sahkoposti = db.Column(db.String(255), nullable=True)

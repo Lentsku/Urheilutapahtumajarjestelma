@@ -4,15 +4,25 @@ from application.henkilot.models import Henkilo
 
 @app.route('/henkilot', methods=['GET'])
 def henkilot_index():
-    return render_template('henkilo/list.html', henkilot = Task.query.all())
+    return render_template('henkilot/list.html', henkilot = Henkilo.query.all())
 
 @app.route('/henkilot/new/')
 def henkilot_form():
     return render_template('henkilot/new.html')
 
-@app.route('/tasks/', methods=['POST'])
+@app.route('/henkilot/', methods=['POST'])
 def henkilot_create():
-    h = Henkilo(request.form.get('etunimi', 'sukunimi', 'sukuEtu', 'osoite', postinumero, 'postitoimipaikka', 'maa', 'sahkoposti', 'puhelin'))
+    etunimi = request.form.get('etunimi')
+    sukunimi = request.form.get('sukunimi')
+    sukuEtu = request.form.get('sukuEtu')
+    osoite = request.form.get('osoite')
+    postinumero = request.form.get('postinumero')
+    postitoimipaikka = request.form.get('postitoimipaikka')
+    maa = request.form.get('maa')
+    sahkoposti = request.form.get('sahkoposti')
+    puhelin = request.form.get('puhelin')
+
+    h = Henkilo(etunimi, sukunimi, sukuEtu, osoite, postinumero, postitoimipaikka, maa, sahkoposti, puhelin))
 
     db.session().add(h)
     db.session().commit()
