@@ -17,7 +17,10 @@ Toiminnot:
 - Osallistujien tulostietojen lisääminen, muokkaaminen ja tarkistaminen
 - Pääsy sovellukseen vain tapahtuman henkilökunnan tunnuksilla kirjautumalla
 
-* [Herokulinkki](https://urheilutapahtumajarjestelma.herokuapp.com/)
+## Linkit
 
+* [Sovellus Herokussa](https://urheilutapahtumajarjestelma.herokuapp.com/)
 * [Tietokantakaavio](https://github.com/Lentsku/Urheilutapahtumajarjestelma/blob/master/documentation/Tapahtumakaavio.png)
 * [User storyt](https://github.com/Lentsku/Urheilutapahtumajarjestelma/blob/master/documentation/userstory.md)
+
+Sidenote: projektissa on useita git brancheja, kuten branch tyonAlla.
