@@ -23,4 +23,8 @@ Toiminnot:
 * [Tietokantakaavio](https://github.com/Lentsku/Urheilutapahtumajarjestelma/blob/master/documentation/Tapahtumakaavio.png)
 * [User storyt](https://github.com/Lentsku/Urheilutapahtumajarjestelma/blob/master/documentation/userstory.md)
 
-Sidenote: projektissa on useita git brancheja, kuten branch tyonAlla.
+### Projektin branchit
+
+* [Master branch](https://github.com/Lentsku/Urheilutapahtumajarjestelma)
+* [Työn alla](https://github.com/Lentsku/Urheilutapahtumajarjestelma/tree/tyonAlla)
+* [Materiaalin todoapp](https://github.com/Lentsku/Urheilutapahtumajarjestelma/tree/todoapp)
