@@ -10,7 +10,7 @@ db = SQLAlchemy(app)
 
 from application import views
 
-from application.tasks import models
-from application.tasks import views
+from application.henkilot import models
+from application.henkilot import views
 
 db.create_all()

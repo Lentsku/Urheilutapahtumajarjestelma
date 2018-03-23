@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Etunimi</th>
+      <th>Sukunimi</th>
+      <th>SukuEtu</th>
+      <th>Osoite</th>
+      <th>Postinumero</th>
+      <th>Postitoimipaikka</th>
+      <th>Maa</th>
+      <th>Sähköposti</th>
+      <th>Puhelin</th>
+      <th></th>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+      <td>{{ task.name }}</td>
+      <td>{{ task.done }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

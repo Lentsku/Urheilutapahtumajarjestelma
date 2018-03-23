@@ -15,7 +15,7 @@ class Henkilo(db.Model):
     def __init__(self, etunimi, sukunimi, sukuEtu, osoite, postinumero, postitoimipaikka, maa, sahkoposti, puhelin):
         self.etunimi = etunimi
         self.sukunimi = sukunimi
-        self.sukuEtu = sukuEtu
+        self.sukuEtu = sukuEtu # Kolme ensimmäistä sukunimen kirjainta ja kaksi ensimmäistä etunimen kirjainta
         self.osoite = osoite
         self.postinumero = postinumero
         self.postitoimipaikka = postitoimipaikka
