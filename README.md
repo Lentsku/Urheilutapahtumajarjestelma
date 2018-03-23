@@ -25,6 +25,6 @@ Toiminnot:
 
 ### Projektin branchit
 
-* [Master branch](https://github.com/Lentsku/Urheilutapahtumajarjestelma)
+* [Master branch](https://github.com/Lentsku/Urheilutapahtumajarjestelma/tree/master)
 * [Työn alla](https://github.com/Lentsku/Urheilutapahtumajarjestelma/tree/tyonAlla)
 * [Materiaalin todoapp](https://github.com/Lentsku/Urheilutapahtumajarjestelma/tree/todoapp)
