@@ -17,4 +17,7 @@ Toiminnot:
 - Osallistujien tulostietojen lisääminen, muokkaaminen ja tarkistaminen
 - Pääsy sovellukseen vain tapahtuman henkilökunnan tunnuksilla kirjautumalla
 
-Herokulinkki: https://urheilutapahtumajarjestelma.herokuapp.com/
+* [Herokulinkki](https://urheilutapahtumajarjestelma.herokuapp.com/)
+
+* [Tietokantakaavio](https://github.com/Lentsku/Urheilutapahtumajarjestelma/blob/master/documentation/Tapahtumakaavio.png)
+* [User storyt](https://github.com/Lentsku/Urheilutapahtumajarjestelma/blob/master/documentation/userstory.md)
