@@ -22,9 +22,9 @@ def henkilot_create():
     sahkoposti = request.form.get('sahkoposti')
     puhelin = request.form.get('puhelin')
 
-    h = Henkilo(etunimi, sukunimi, sukuEtu, osoite, postinumero, postitoimipaikka, maa, sahkoposti, puhelin))
+    henkilo = Henkilo(etunimi, sukunimi, sukuEtu, osoite, postinumero, postitoimipaikka, maa, sahkoposti, puhelin)
 
-    db.session().add(h)
+    db.session().add(henkilo)
     db.session().commit()
 
     return redirect(url_for('henkilot_index'))
