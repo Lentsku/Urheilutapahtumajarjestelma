@@ -1,14 +1,24 @@
 from application import db
 
-class Task(db.Model):
+class Henkilo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-    onupdate=db.func.current_timestamp())
+    etunimi = db.Column(db.String(63), nullable=False)
+    sukunimi = db.Column(db.String(63), nullable=False)
+    sukuEtu = db.Column(db.String(7), nullable=False)
+    osoite = db.Column(db.String(255), nullable=False)
+    postinumero = db.Column(db.Integer)
+    postitoimipaikka = db.Column(db.String(144), nullable=False)
+    maa = db.Column(db.String(144), nullable=True)
+    sahkoposti = db.Column(db.String(255), nullable=True)
+    puhelin = db.Column(db.String(255), nullable=True)
 
-    name = db.Column(db.String(144), nullable=False)
-    done = db.Column(db.Boolean, nullable=False)
-
-    def __init__(self, name):
-        self.name = name
-        self.done = False
+    def __init__(self, etunimi, sukunimi, sukuEtu, osoite, postinumero, postitoimipaikka, maa, sahkoposti, puhelin):
+        self.etunimi = etunimi
+        self.sukunimi = sukunimi
+        self.sukuEtu = sukuEtu
+        self.osoite = osoite
+        self.postinumero = postinumero
+        self.postitoimipaikka = postitoimipaikka
+        self.maa = maa
+        self.sahkoposti = sahkoposti
+        self.puhelin = puhelin
