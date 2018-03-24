@@ -2,15 +2,33 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('henkilot_create') }}">
-  <input type="text" name="etunimi"/>
-  <input type="text" name="sukunimi"/>
-  <input type="text" name="sukuEtu"/>
-  <input type="text" name="osoite"/>
-  <input type="text" name="postinumero"/>
-  <input type="text" name="postitoimipaikka"/>
-  <input type="text" name="maa"/>
-  <input type="text" name="sahkoposti"/>
-  <input type="text" name="puhelin"/>
+  <p>Etunimi:<br />
+    <input type="text" name="etunimi"/>
+  </p>
+  <p>Sukunimi:<br />
+    <input type="text" name="sukunimi"/>
+  </p>
+  <p>SukuEtu:<br />
+    <input type="text" name="sukuEtu"/>
+  </p>
+  <p>Osoite:<br />
+    <input type="text" name="osoite"/>
+  </p>
+  <p>Postinumero:<br />
+    <input type="text" name="postinumero"/>
+  </p>
+  <p>Postitoimipaikka:<br />
+    <input type="text" name="postitoimipaikka"/>
+  </p>
+  <p>Maa:<br />
+    <input type="text" name="maa"/>
+  </p>
+  <p>Sähköposti:<br />
+    <input type="text" name="sahkoposti"/>
+  </p>
+  <p>Puhelin:<br />
+    <input type="text" name="puhelin"/>
+  </p>
   <input type="submit" value="Lisää henkilö"/>
 </form>
 {% endblock %}
