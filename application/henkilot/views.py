@@ -18,10 +18,10 @@ def henkilot_create():
 
     if not form.validate():
         return render_template('henkilot/new.html', form = form)
-        
+
     etunimi = form.etunimi.data
     sukunimi = form.sukunimi.data
-    sukuEtu = form.sukuEtu.data
+    sukuEtu = sukunimi[:3] + etunimi[:2]
     sahkoposti = form.sahkoposti.data
     puhelin = form.puhelin.data
     osoite = form.osoite.data

@@ -2,9 +2,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, validators
 
 class HenkiloForm(FlaskForm):
-    etunimi = StringField('Etunimi', [validators.Length(min=1)])
-    sukunimi = StringField('Sukunimi', [validators.Length(min=1)])
-    sukuEtu = StringField('SukuEtu')
+    etunimi = StringField('Etunimi', [validators.Length(min=2)])
+    sukunimi = StringField('Sukunimi', [validators.Length(min=3)])
     sahkoposti = StringField('Sähköposti')
     puhelin = StringField('Puhelin')
     osoite = StringField('Osoite')
