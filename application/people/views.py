@@ -22,6 +22,7 @@ def person_create():
     firstname = form.firstname.data
     lastname = form.lastname.data
     lastFirst = lastname[:3] + firstname[:2]
+    birthdate = form.birthdate.data
     email = form.email.data
     phone = form.phone.data
     address = form.address.data
@@ -29,7 +30,7 @@ def person_create():
     postOffice = form.postOffice.data
     country = form.country.data
 
-    person = Person(firstname, lastname, lastFirst, email, phone, address, zipcode, postOffice, country)
+    person = Person(firstname, lastname, lastFirst, birthdate, email, phone, address, zipcode, postOffice, country)
 
     db.session().add(person)
     db.session().commit()

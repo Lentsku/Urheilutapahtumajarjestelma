@@ -35,6 +35,21 @@
     </tr>
     <tr>
       <td>
+        {{ form.birthdate.label }}
+      </td>
+      <td>
+        {{ form.birthdate }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.birthdate.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
         {{ form.email.label }}
       </td>
       <td>
