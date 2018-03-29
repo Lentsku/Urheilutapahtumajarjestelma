@@ -10,6 +10,13 @@
       <td>
         {{ form.etunimi }}
       </td>
+      <td>
+        <ul>
+          {% for error in form.etunimi.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
     </tr>
     <tr>
       <td>
@@ -17,6 +24,13 @@
       </td>
       <td>
         {{ form.sukunimi }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.sukunimi.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
       </td>
     </tr>
     <tr>
@@ -26,6 +40,13 @@
       <td>
         {{ form.sukuEtu }}
       </td>
+      <td>
+        <ul>
+          {% for error in form.sukuEtu.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
     </tr>
     <tr>
       <td>
@@ -33,6 +54,13 @@
       </td>
       <td>
         {{ form.sahkoposti }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.sahkoposti.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
       </td>
     </tr>
     <tr>
@@ -42,6 +70,13 @@
       <td>
         {{ form.puhelin }}
       </td>
+      <td>
+        <ul>
+          {% for error in form.puhelin.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
     </tr>
     <tr>
       <td>
@@ -49,6 +84,13 @@
       </td>
       <td>
         {{ form.osoite }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.osoite.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
       </td>
     </tr>
     <tr>
@@ -58,6 +100,13 @@
       <td>
         {{ form.postinumero }}
       </td>
+      <td>
+        <ul>
+          {% for error in form.postinumero.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
     </tr>
     <tr>
       <td>
@@ -66,6 +115,13 @@
       <td>
         {{ form.postitoimipaikka }}
       </td>
+      <td>
+        <ul>
+          {% for error in form.postitoimipaikka.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
     </tr>
     <tr>
       <td>
@@ -73,6 +129,13 @@
       </td>
       <td>
         {{ form.maa }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.maa.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
       </td>
     </tr>
     <tr>

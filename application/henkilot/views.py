@@ -16,6 +16,9 @@ def henkilot_form():
 def henkilot_create():
     form = HenkiloForm(request.form)
 
+    if not form.validate():
+        return render_template('henkilot/new.html', form = form)
+        
     etunimi = form.etunimi.data
     sukunimi = form.sukunimi.data
     sukuEtu = form.sukuEtu.data
