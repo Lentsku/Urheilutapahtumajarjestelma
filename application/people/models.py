@@ -16,7 +16,7 @@ class Person(db.Model):
     def __init__(self, firstname, lastname, lastFirst, birthdate, email, phone, address, zipcode, postOffice, country):
         self.firstname = firstname
         self.lastname = lastname
-        self.lastFirst = lastFirst # Kolme ensimmäistä sukunimen kirjainta ja kaksi ensimmäistä etunimen kirjainta
+        self.lastFirst = lastFirst # Automatically generated from the last and first names
         self.birthdate = birthdate
         self.email = email
         self.phone = phone
