@@ -1,6 +1,8 @@
-from application import app, db
 from flask import redirect, render_template, request, url_for
+
+from application import app, db
 from application.henkilot.models import Henkilo
+from application.henkilot.forms import EtunimiForm
 
 @app.route('/henkilot', methods=['GET'])
 def henkilot_index():
@@ -8,7 +10,7 @@ def henkilot_index():
 
 @app.route('/henkilot/new/')
 def henkilot_form():
-    return render_template('henkilot/new.html')
+    return render_template('henkilot/new.html', form = EtunimiForm())
 
 @app.route('/henkilot/', methods=['POST'])
 def henkilot_create():

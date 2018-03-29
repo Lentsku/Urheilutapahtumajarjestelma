@@ -2,7 +2,22 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('henkilot_create') }}">
-  <p>Etunimi:<br />
+  <table>
+    <tr>
+      <td>
+        {{ form.name.label }}
+      </td>
+      <td>
+        {{ form.name }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Lisää uusi henkilö"
+      </td>
+    </tr>
+  </table>
+<!--  <p>Etunimi:<br />
     <input type="text" name="etunimi"/>
   </p>
   <p>Sukunimi:<br />
@@ -29,6 +44,6 @@
   <p>Puhelin:<br />
     <input type="text" name="puhelin"/>
   </p>
-  <input type="submit" value="Lisää henkilö"/>
+  <input type="submit" value="Lisää henkilö"/>-->
 </form>
 {% endblock %}
