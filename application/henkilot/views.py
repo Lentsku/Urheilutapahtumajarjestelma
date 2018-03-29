@@ -2,7 +2,7 @@ from flask import redirect, render_template, request, url_for
 
 from application import app, db
 from application.henkilot.models import Henkilo
-from application.henkilot.forms import EtunimiForm
+from application.henkilot.forms import HenkiloForm
 
 @app.route('/henkilot', methods=['GET'])
 def henkilot_index():
@@ -10,21 +10,23 @@ def henkilot_index():
 
 @app.route('/henkilot/new/')
 def henkilot_form():
-    return render_template('henkilot/new.html', form = EtunimiForm())
+    return render_template('henkilot/new.html', form = HenkiloForm())
 
 @app.route('/henkilot/', methods=['POST'])
 def henkilot_create():
-    etunimi = request.form.get('etunimi')
-    sukunimi = request.form.get('sukunimi')
-    sukuEtu = request.form.get('sukuEtu')
-    osoite = request.form.get('osoite')
-    postinumero = request.form.get('postinumero')
-    postitoimipaikka = request.form.get('postitoimipaikka')
-    maa = request.form.get('maa')
-    sahkoposti = request.form.get('sahkoposti')
-    puhelin = request.form.get('puhelin')
+    form = HenkiloForm(request.form)
 
-    henkilo = Henkilo(etunimi, sukunimi, sukuEtu, osoite, postinumero, postitoimipaikka, maa, sahkoposti, puhelin)
+    etunimi = form.etunimi.data
+    sukunimi = form.sukunimi.data
+    sukuEtu = form.sukuEtu.data
+    sahkoposti = form.sahkoposti.data
+    puhelin = form.puhelin.data
+    osoite = form.osoite.data
+    postinumero = form.postinumero.data
+    postitoimipaikka = form.postitoimipaikka.data
+    maa = form.maa.data
+
+    henkilo = Henkilo(etunimi, sukunimi, sukuEtu, sahkoposti, puhelin, osoite, postinumero, postitoimipaikka, maa)
 
     db.session().add(henkilo)
     db.session().commit()
