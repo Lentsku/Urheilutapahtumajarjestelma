@@ -8,7 +8,7 @@ class PersonForm(FlaskForm):
     email = StringField('Sähköposti')
     phone = StringField('Puhelin')
     address = StringField('Osoite')
-    zipcode = StringField('Postinumero')
+    postalCode = StringField('Postinumero')
     postOffice = StringField('Postitoimipaikka')
     country = StringField('Maa')
 

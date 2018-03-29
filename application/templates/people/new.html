@@ -95,14 +95,14 @@
     </tr>
     <tr>
       <td>
-        {{ form.zipcode.label }}
+        {{ form.postalCode.label }}
       </td>
       <td>
-        {{ form.zipcode }}
+        {{ form.postalCode }}
       </td>
       <td>
         <ul>
-          {% for error in form.zipcode.errors %}
+          {% for error in form.postalCode.errors %}
           <li>{{ error }}</li>
           {% endfor %}
         </ul>

@@ -9,11 +9,11 @@ class Person(db.Model):
     email = db.Column(db.String(255), nullable=True)
     phone = db.Column(db.String(255), nullable=True)
     address = db.Column(db.String(255), nullable=False)
-    zipcode = db.Column(db.String(63), nullable=False)
+    postalCode = db.Column(db.String(63), nullable=False)
     postOffice = db.Column(db.String(144), nullable=False)
     country = db.Column(db.String(144), nullable=True)
 
-    def __init__(self, firstname, lastname, lastFirst, birthdate, email, phone, address, zipcode, postOffice, country):
+    def __init__(self, firstname, lastname, lastFirst, birthdate, email, phone, address, postalCode, postOffice, country):
         self.firstname = firstname
         self.lastname = lastname
         self.lastFirst = lastFirst # Automatically generated from the last and first names
@@ -21,6 +21,6 @@ class Person(db.Model):
         self.email = email
         self.phone = phone
         self.address = address
-        self.zipcode = zipcode
+        self.postalCode = postalCode
         self.postOffice = postOffice
         self.country = country
