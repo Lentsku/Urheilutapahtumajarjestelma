@@ -12,7 +12,7 @@ def series_index():
 def series_form():
     return render_template('series/new.html', form = SeriesForm())
 
-@app.route('/series/')
+@app.route('/series/', methods=['POST'])
 def series_create():
     form = SeriesForm(request.form)
 
