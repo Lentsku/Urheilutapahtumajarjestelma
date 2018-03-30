@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<table border="1">
+  <thead>
+    <tr>
+      <th>Sarja</th>
+      <th>Tapahtuma</th>
+      <th>Lähtöaika</th>
+      <th>Kokonaismatka</th>
+    </tr>
+  </thead>
+  {% for series in series %}
+  <tbody>
+    <tr>
+      <td>{{ series.seriesName }}</td>
+      <td>{{ series.eventName }}</td>
+      <td>{{ series.startTime }}</td>
+      <td>{{ series.totalDistance }}</td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
+{% endblock %}

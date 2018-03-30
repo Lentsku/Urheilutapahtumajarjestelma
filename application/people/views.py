@@ -11,10 +11,12 @@ def person_index():
     return render_template('people/list.html', people = Person.query.all())
 
 @app.route('/people/new/')
+@login_required
 def person_form():
     return render_template('people/new.html', form = PersonForm())
 
 @app.route('/people/', methods=['POST'])
+@login_required
 def person_create():
     form = PersonForm(request.form)
 

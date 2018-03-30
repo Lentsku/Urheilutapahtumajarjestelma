@@ -16,6 +16,9 @@ from application import views
 from application.people import models
 from application.people import views
 
+from application.series import models
+from application.series import views
+
 from application.auth import models
 from application.auth import views
 

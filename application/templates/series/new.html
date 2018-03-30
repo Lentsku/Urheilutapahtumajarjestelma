@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('series_create') }}"
+  <table>
+    <tr>
+      <td>
+        {{ form.seriesName.label }}
+      </td>
+      <td>
+        {{ form.seriesName }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.seriesName.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+      <td>
+        {{ form.eventName.label }}
+      </td>
+      <td>
+        {{ form.eventName }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.eventName.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+      <td>
+        {{ form.startTime.label }}
+      </td>
+      <td>
+        {{ form.startTime }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.startTime.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+      <td>
+        {{ form.totalDistance.label }}
+      </td>
+      <td>
+        {{ form.totalDistance }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.totalDistance.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Lisää uusi tapahtuma"/>
+      </td>
+    </tr>
+  </table>
+</form>
+{% endblock %}
