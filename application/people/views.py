@@ -4,6 +4,8 @@ from application import app, db
 from application.people.models import Person
 from application.people.forms import PersonForm
 
+from flask_login import login_required
+
 @app.route('/people', methods=['GET'])
 def person_index():
     return render_template('people/list.html', people = Person.query.all())
