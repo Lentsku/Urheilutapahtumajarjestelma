@@ -2,13 +2,13 @@ from flask import redirect, render_template, request, url_for
 
 from application import app, db
 from application.people.models import Person
-from application.people.forms import PersonForm
+from application.people.forms import PersonForm, SearchForm
 
 from flask_login import login_required
 
 @app.route('/people', methods=['GET'])
 def person_index():
-    return render_template('people/list.html', people = Person.query.all())
+    return render_template('people/list.html', form = SearchForm(), people = Person.query.all())
 
 @app.route('/people/new/')
 @login_required
@@ -25,7 +25,7 @@ def person_create():
 
     firstname = form.firstname.data
     lastname = form.lastname.data
-    lastFirst = lastname[:3] + firstname[:2]
+    lastFirst = formatLastFirst(lastname[:3] + firstname[:2])
     birthdate = form.birthdate.data
     email = form.email.data
     phone = form.phone.data
@@ -40,3 +40,28 @@ def person_create():
     db.session().commit()
 
     return redirect(url_for('person_index'))
+
+@app.route('/people/search/', methods = ['GET', 'POST'])
+def person_search():
+    form = SearchForm(request.form)
+
+    if not form.validate():
+        return render_template('people/list.html', form = form)
+
+    if form.validate_on_submit():
+        lastFirst = formatLastFirst(form.lastFirst.data)
+        people = Person.query.filter(Person.lastFirst == lastFirst)
+
+    people = people.order_by(Person.lastname).all()
+
+    return render_template('people/list.html', form = form, people = people)
+
+def formatLastFirst(param):
+    lastFirst = param
+    firstUp = lastFirst[:1].upper()
+    secondDown = lastFirst[1:3].lower()
+    thirdUp = lastFirst[3:4].upper()
+    fourthDown = lastFirst[4:5].lower()
+    lastFirst = firstUp + secondDown + thirdUp + fourthDown
+
+    return lastFirst

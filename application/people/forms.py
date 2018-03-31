@@ -14,3 +14,9 @@ class PersonForm(FlaskForm):
 
     class Meta:
         csrf = False
+
+class SearchForm(FlaskForm):
+    lastFirst = StringField('SukuEtu-haku', [validators.Length(min=5, message='Pituus 5 merkkiä. Kirjoita 3 sukunimen ensimmäistä kirjaina ja 2 etunimen ensimmäistä kirjainta, kirjainkoolla ei ole väliä')])
+
+    class Meta:
+        csrf = False

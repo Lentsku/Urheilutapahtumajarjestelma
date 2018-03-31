@@ -1,9 +1,25 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<form method="POST" action="{{ url_for('person_search') }}"
+  <table>
+    <tr>
+      <td>
+        {{ form.lastFirst.label }}
+      </td>
+      <td>
+        {{ form.lastFirst }}
+      </td>
+      <td colspan="2">
+        <input type="submit" value="Hae henkilöä"/>
+      </td>
+    </tr>
+  </table>
+</form>
   <table border="1">
     <thead>
       <tr>
+        <th>Valitse</th>
         <th>Etunimi</th>
         <th>Sukunimi</th>
         <th>SukuEtu</th>
@@ -19,6 +35,9 @@
     {% for person in people %}
     <tbody>
       <tr>
+        <td>
+          <input type="submit" name="{{ person.id }}" value="Lisää tapahtumaan">
+        </td>
         <td>{{ person.firstname }}</td>
         <td>{{ person.lastname }}</td>
         <td>{{ person.lastFirst }}</td>
