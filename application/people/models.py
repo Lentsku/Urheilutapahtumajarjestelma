@@ -13,6 +13,8 @@ class Person(db.Model):
     postOffice = db.Column(db.String(144), nullable=False)
     country = db.Column(db.String(144), nullable=True)
 
+    personSeries = db.relationship('PersonSeries', backref='Person', lazy=True)
+
     def __init__(self, firstname, lastname, lastFirst, birthdate, email, phone, address, postalCode, postOffice, country):
         self.firstname = firstname
         self.lastname = lastname
@@ -24,3 +26,6 @@ class Person(db.Model):
         self.postalCode = postalCode
         self.postOffice = postOffice
         self.country = country
+
+    def get_id(self):
+        return self.id
