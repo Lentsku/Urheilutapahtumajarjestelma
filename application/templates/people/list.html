@@ -5,10 +5,10 @@
   <table>
     <tr>
       <td>
-        {{ form.lastFirst.label }}
+        {{ form.lastFirstSearch.label }}
       </td>
       <td>
-        {{ form.lastFirst }}
+        {{ form.lastFirstSearch }}
       </td>
       <td colspan="2">
         <input type="submit" value="Hae henkilöä"/>
@@ -22,7 +22,6 @@
         <th>Valitse</th>
         <th>Etunimi</th>
         <th>Sukunimi</th>
-        <th>SukuEtu</th>
         <th>Syntymäaika</th>
         <th>Sähköposti</th>
         <th>Puhelin</th>
@@ -40,7 +39,6 @@
         </td>
         <td>{{ person.firstname }}</td>
         <td>{{ person.lastname }}</td>
-        <td>{{ person.lastFirst }}</td>
         <td>{{ person.birthdate }}</td>
         <td>{{ person.email }}</td>
         <td>{{ person.phone }}</td>

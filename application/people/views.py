@@ -11,30 +11,27 @@ def person_index():
     return render_template('people/list.html', form = SearchForm(), people = Person.query.all())
 
 @app.route('/people/new/')
-@login_required
 def person_form():
     return render_template('people/new.html', form = PersonForm())
 
 @app.route('/people/', methods=['POST'])
-@login_required
 def person_create():
     form = PersonForm(request.form)
 
     if not form.validate():
         return render_template('people/new.html', form = form)
 
-    firstname = form.firstname.data
-    lastname = form.lastname.data
-    lastFirst = formatLastFirst(lastname[:3] + firstname[:2])
+    firstname = formatName(form.firstname.data)
+    lastname = formatName(form.lastname.data)
     birthdate = form.birthdate.data
     email = form.email.data
     phone = form.phone.data
-    address = form.address.data
+    address = formatName(form.address.data)
     postalCode = form.postalCode.data
-    postOffice = form.postOffice.data
-    country = form.country.data
+    postOffice = formatName(form.postOffice.data)
+    country = formatName(form.country.data)
 
-    person = Person(firstname, lastname, lastFirst, birthdate, email, phone, address, postalCode, postOffice, country)
+    person = Person(firstname, lastname, birthdate, email, phone, address, postalCode, postOffice, country)
 
     db.session().add(person)
     db.session().commit()
@@ -43,25 +40,41 @@ def person_create():
 
 @app.route('/people/search/', methods = ['GET', 'POST'])
 def person_search():
+
     form = SearchForm(request.form)
 
     if not form.validate():
         return render_template('people/list.html', form = form)
 
-    if form.validate_on_submit():
-        lastFirst = formatLastFirst(form.lastFirst.data)
-        people = Person.query.filter(Person.lastFirst == lastFirst)
+    formParam = form.lastFirstSearch.data
+    lastFirstSplit = ''
+    if '.' in formParam:
+        lastFirstSplit = formParam.split('.')
+    else:
+        lastFirstSplit = formParam.split(' ')
+
+    lastname = formatName(lastFirstSplit[0])
+    people = ''
+    if len(lastFirstSplit) == 1:
+        people = Person.query.filter(Person.lastname.like(lastname + '%'))
+    elif lastname == '':
+        firstname = formatName(lastFirstSplit[1])
+        people = Person.query.filter(Person.firstname.like(firstname + '%'))
+    else:
+        firstname = formatName(lastFirstSplit[1])
+        people = Person.query.filter(Person.lastname.like(lastname + '%')) \
+                             .filter(Person.firstname.like(firstname + '%'))
 
     people = people.order_by(Person.lastname).all()
 
     return render_template('people/list.html', form = form, people = people)
 
-def formatLastFirst(param):
-    lastFirst = param
-    firstUp = lastFirst[:1].upper()
-    secondDown = lastFirst[1:3].lower()
-    thirdUp = lastFirst[3:4].upper()
-    fourthDown = lastFirst[4:5].lower()
-    lastFirst = firstUp + secondDown + thirdUp + fourthDown
+def formatName(param):
+    if '-' in param:
+        paramSplit = param.split('-')
+        result = ''
+        for item in paramSplit:
+            result += item[:1].upper() + item[1:] + '-'
+        return result[:-1]
 
-    return lastFirst
+    return param[:1].upper() + param[1:]
