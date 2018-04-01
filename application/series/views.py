@@ -3,6 +3,7 @@ from flask import render_template, request, redirect, url_for
 from application import app, db
 from application.series.models import Series
 from application.series.forms import SeriesForm
+from application.domain.textRenderer import formatName
 
 @app.route('/series', methods=['GET'])
 def series_index():

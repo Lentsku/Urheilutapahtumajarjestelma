@@ -3,6 +3,7 @@ from flask import redirect, render_template, request, url_for
 from application import app, db
 from application.people.models import Person
 from application.people.forms import PersonForm, SearchForm
+from application.domain.textRenderer import formatName
 
 from flask_login import login_required
 
@@ -68,13 +69,3 @@ def person_search():
     people = people.order_by(Person.lastname).all()
 
     return render_template('people/list.html', form = form, people = people)
-
-def formatName(param):
-    if '-' in param:
-        paramSplit = param.split('-')
-        result = ''
-        for item in paramSplit:
-            result += item[:1].upper() + item[1:] + '-'
-        return result[:-1]
-
-    return param[:1].upper() + param[1:]
