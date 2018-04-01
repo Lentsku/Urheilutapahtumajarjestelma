@@ -39,7 +39,7 @@ def person_create():
 
     return redirect(url_for('person_index'))
 
-@app.route('/people/search/', methods = ['GET', 'POST'])
+@app.route('/people/search/', methods = ['POST'])
 def person_search():
 
     form = SearchForm(request.form)
@@ -52,7 +52,7 @@ def person_search():
     if '.' in formParam:
         lastFirstSplit = formParam.split('.')
     else:
-        lastFirstSplit = formParam.split(' ')
+        lastFirstSplit = formParam.split(' ') # Critical to specify .split(' ')
 
     lastname = formatName(lastFirstSplit[0])
     people = ''
