@@ -3,13 +3,15 @@ from flask import redirect, render_template, request, url_for
 from application import app, db
 from application.people.models import Person
 from application.people.forms import PersonForm, SearchForm
+from application.series.forms import SelectSeriesForm
 from application.domain.textRenderer import formatName
 
 from flask_login import login_required
 
 @app.route('/people', methods=['GET'])
 def person_index():
-    return render_template('people/list.html', form = SearchForm(), people = Person.query.all())
+    return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
+                            searchForm = SearchForm(), people = Person.query.all())
 
 @app.route('/people/new/')
 def person_form():
@@ -68,4 +70,5 @@ def person_search():
 
     people = people.order_by(Person.lastname).all()
 
-    return render_template('people/list.html', form = form, people = people)
+    return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
+                            searchForm = form, people = people)

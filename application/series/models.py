@@ -1,5 +1,7 @@
 from application import db
 
+from application.personSeries.models import PersonSeries
+
 class Series(db.Model):
 
     __tablename__ = 'Series'

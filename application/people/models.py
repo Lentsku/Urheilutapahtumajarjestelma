@@ -1,5 +1,7 @@
 from application import db
 
+from application.personSeries.models import PersonSeries
+
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.String(63), nullable=False)
