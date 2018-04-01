@@ -2,6 +2,7 @@ from flask import redirect, render_template, request, url_for
 
 from application import app, db
 from application.people.models import Person
+from application.personSeries.models import PersonSeries
 from application.people.forms import PersonForm, SearchForm
 from application.series.forms import SelectSeriesForm
 from application.domain.textRenderer import formatName
@@ -72,3 +73,32 @@ def person_search():
 
     return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
                             searchForm = form, people = people)
+
+@app.route('/people/add/person/', methods = ['POST'])
+def add_person():
+    personForm = PersonForm()
+#    if not personForm.validate() or selectSeriesForm.validate():
+#        return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
+#                                searchForm = SearchForm(), people = Person.query.all())
+
+    personId = request.form['person_id']
+    print(personId)
+#    personSeries = PersonSeries(1)
+
+#    personSeries.series_id = seriesId
+#    personSeries.person_id = personId
+
+#    db.session().add(personSeries)
+#    db.session().commit()
+
+    return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
+                            searchForm = SearchForm, people = Person.query.all())
+
+@app.route('/people/add/series/', methods = ['POST'])
+def add_series():
+    selectSeriesForm = SelectSeriesForm()
+    seriesId = selectSeriesForm.seriesSelector.data
+    print(seriesId)
+
+    return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
+                            searchForm = SearchForm, people = Person.query.all())

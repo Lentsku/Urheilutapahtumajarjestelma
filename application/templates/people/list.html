@@ -5,11 +5,6 @@
   <table>
     <tr>
       <td>
-        {{ selectSeriesForm.seriesSelector }}
-      </td>
-    </tr>
-    <tr>
-      <td>
         {{ searchForm.lastFirstSearch.label }}
       </td>
       <td>
@@ -24,7 +19,9 @@
   <table border="1">
     <thead>
       <tr>
-        <th>Valitse</th>
+        <form method="POST" action="{{ url_for('add_series') }}">
+          <th>{{ selectSeriesForm.seriesSelector }}<input type="submit" value="Valitse"><th>
+        </form>
         <th>Etunimi</th>
         <th>Sukunimi</th>
         <th>Syntymäaika</th>
@@ -40,7 +37,10 @@
     <tbody>
       <tr>
         <td>
-          <input type="submit" name="{{ person.id }}" value="Lisää tapahtumaan">
+          <form method="POST" action="{{ url_for('add_person') }}">
+            <input type="hidden" name="person_id" value="{{ person.id }}">
+            <input type="submit" value="Lisää tapahtumaan">
+          </form>
         </td>
         <td>{{ person.firstname }}</td>
         <td>{{ person.lastname }}</td>

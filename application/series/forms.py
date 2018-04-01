@@ -24,3 +24,5 @@ class SelectSeriesForm(FlaskForm):
         'Valitse sarja',
         choices=seriesList
     )
+    class Meta:
+        csrf = False
