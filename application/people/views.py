@@ -12,7 +12,8 @@ from flask_login import login_required
 @app.route('/people', methods=['GET'])
 def person_index():
     return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
-                            searchForm = SearchForm(), people = Person.query.all())
+                            searchForm = SearchForm(), people = Person.query.all(),
+                            seriesId = -1)
 
 @app.route('/people/new/')
 def person_form():
@@ -72,7 +73,7 @@ def person_search():
     people = people.order_by(Person.lastname).all()
 
     return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
-                            searchForm = form, people = people)
+                            searchForm = form, people = people, seriesId = -1)
 
 @app.route('/people/add/person/', methods = ['POST'])
 def add_person():
@@ -80,19 +81,19 @@ def add_person():
 #    if not personForm.validate() or selectSeriesForm.validate():
 #        return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
 #                                searchForm = SearchForm(), people = Person.query.all())
-
+    seriesId = request.form['series_id']
     personId = request.form['person_id']
-    print(personId)
-#    personSeries = PersonSeries(1)
 
-#    personSeries.series_id = seriesId
-#    personSeries.person_id = personId
-
-#    db.session().add(personSeries)
-#    db.session().commit()
+    if not seriesId == -1:
+        personSeries = PersonSeries(1)
+        personSeries.series_id = seriesId
+        personSeries.person_id = personId
+        db.session().add(personSeries)
+        db.session().commit()
 
     return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
-                            searchForm = SearchForm, people = Person.query.all())
+                            searchForm = SearchForm, people = Person.query.all(),
+                            seriesId = -1)
 
 @app.route('/people/add/series/', methods = ['POST'])
 def add_series():
@@ -101,4 +102,5 @@ def add_series():
     print(seriesId)
 
     return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
-                            searchForm = SearchForm, people = Person.query.all())
+                            searchForm = SearchForm, people = Person.query.all(),
+                            seriesId = seriesId)
