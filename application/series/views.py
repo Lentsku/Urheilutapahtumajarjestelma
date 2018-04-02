@@ -20,8 +20,8 @@ def series_create():
     if not form.validate():
         return render_template('series/new.html', form = form)
 
-    seriesName = form.seriesName.data
-    eventName = form.eventName.data
+    seriesName = formatName(form.seriesName.data)
+    eventName = formatName(form.eventName.data)
     startTime = form.startTime.data
     totalDistance = form.totalDistance.data
 
