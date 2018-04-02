@@ -96,6 +96,7 @@ def add_person():
 
 @app.route('/people/add/series/', methods = ['POST'])
 def add_series():
+    # TODO make the SelectField store the selected value upon selection without clicking a submit-button
     selectSeriesForm = SelectSeriesForm()
     seriesId = selectSeriesForm.seriesSelector.data
     global seriesIdGlobal
