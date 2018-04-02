@@ -9,11 +9,12 @@ from application.domain.textRenderer import formatName
 
 from flask_login import login_required
 
+seriesIdGlobal = -1
+
 @app.route('/people', methods=['GET'])
 def person_index():
     return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
-                            searchForm = SearchForm(), people = Person.query.all(),
-                            seriesId = -1)
+                            searchForm = SearchForm(), people = Person.query.all())
 
 @app.route('/people/new/')
 def person_form():
@@ -73,15 +74,14 @@ def person_search():
     people = people.order_by(Person.lastname).all()
 
     return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
-                            searchForm = form, people = people, seriesId = -1)
+                            searchForm = form, people = people)
 
 @app.route('/people/add/person/', methods = ['POST'])
 def add_person():
-    personForm = PersonForm()
 #    if not personForm.validate() or selectSeriesForm.validate():
 #        return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
 #                                searchForm = SearchForm(), people = Person.query.all())
-    seriesId = request.form['series_id']
+    seriesId = seriesIdGlobal
     personId = request.form['person_id']
 
     if not seriesId == -1:
@@ -92,15 +92,14 @@ def add_person():
         db.session().commit()
 
     return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
-                            searchForm = SearchForm, people = Person.query.all(),
-                            seriesId = -1)
+                            searchForm = SearchForm(), people = Person.query.all())
 
 @app.route('/people/add/series/', methods = ['POST'])
 def add_series():
     selectSeriesForm = SelectSeriesForm()
     seriesId = selectSeriesForm.seriesSelector.data
-    print(seriesId)
+    global seriesIdGlobal
+    seriesIdGlobal = seriesId
 
     return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
-                            searchForm = SearchForm, people = Person.query.all(),
-                            seriesId = seriesId)
+                            searchForm = SearchForm(), people = Person.query.all())

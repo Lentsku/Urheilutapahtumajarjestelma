@@ -36,10 +36,9 @@
     {% for person in people %}
     <tbody>
       <tr>
-        <td>
+        <td colspan="2">
           <form method="POST" action="{{ url_for('add_person') }}">
             <input type="hidden" name="person_id" value="{{ person.id }}">
-            <input type="hidden" name="series_id" value="{{ seriesId }}">
             <input type="submit" value="Lisää tapahtumaan">
           </form>
         </td>
