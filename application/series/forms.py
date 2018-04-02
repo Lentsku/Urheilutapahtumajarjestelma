@@ -18,7 +18,8 @@ class SelectSeriesForm(FlaskForm):
 
     seriesList = []
     for item in series:
-        seriesList.append(tuple((item.id, item.startTime.strftime('%Y') + ' ' + item.eventName + ' ' + item.seriesName)))
+        seriesList.append(tuple((item.id, item.startTime.strftime('%Y') + ' '
+                                 + item.eventName + ' ' + item.seriesName)))
 
     seriesSelector = SelectField(
         'Valitse sarja',

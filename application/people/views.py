@@ -47,14 +47,12 @@ def person_create():
 
 @app.route('/people/search/', methods = ['POST'])
 def person_search():
+    searchForm = SearchForm(request.form)
 
-    form = SearchForm(request.form)
-    selectSeriesForm = SelectSeriesForm(request.form, seriesSelector=seriesIdGlobal)
+    if not searchForm.validate():
+        return render_template('people/list.html', form = searchForm)
 
-    if not form.validate():
-        return render_template('people/list.html', form = form)
-
-    formParam = form.lastFirstSearch.data
+    formParam = searchForm.lastFirstSearch.data
     lastFirstSplit = ''
     if '.' in formParam:
         lastFirstSplit = formParam.split('.')
@@ -75,16 +73,11 @@ def person_search():
 
     people = people.order_by(Person.lastname).all()
 
-    return render_template('people/list.html', selectSeriesForm = selectSeriesForm,
-                            searchForm = form, people = people)
+    return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(request.form, seriesSelector=seriesIdGlobal),
+                            searchForm = searchForm, people = people)
 
 @app.route('/people/add/person/', methods = ['POST'])
 def add_person():
-#    if not personForm.validate() or selectSeriesForm.validate():
-#        return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
-#                                searchForm = SearchForm(), people = Person.query.all())
-    selectSeriesForm = SelectSeriesForm(request.form, seriesSelector=seriesIdGlobal)
-
     seriesId = seriesIdGlobal
     personId = request.form['person_id']
 
@@ -95,8 +88,7 @@ def add_person():
         db.session().add(personSeries)
         db.session().commit()
 
-    return render_template('people/list.html', selectSeriesForm = selectSeriesForm,
-                            searchForm = SearchForm(request.form), people = Person.query.all())
+    return redirect(url_for('person_index'))
 
 @app.route('/people/add/series/', methods = ['POST'])
 def add_series():
@@ -106,5 +98,4 @@ def add_series():
     global seriesIdGlobal
     seriesIdGlobal = seriesId
 
-    return render_template('people/list.html', selectSeriesForm = selectSeriesForm,
-                            searchForm = SearchForm(request.form), people = Person.query.all())
+    return redirect(url_for('person_index'))

@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for
 
 from application import app, db
 from application.series.models import Series
-from application.series.forms import SeriesForm
+from application.series.forms import SeriesForm, SelectSeriesForm
 from application.domain.textRenderer import formatName
 
 @app.route('/series', methods=['GET'])
@@ -29,5 +29,9 @@ def series_create():
 
     db.session().add(series)
     db.session().commit()
+
+    SelectSeriesForm().seriesList \
+                      .append(tuple((series.id, series.startTime.strftime('%Y')
+                      + ' ' + series.eventName + ' ' + series.seriesName)))
 
     return redirect(url_for('series_index'))
