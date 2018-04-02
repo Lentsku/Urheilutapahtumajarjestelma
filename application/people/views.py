@@ -40,7 +40,7 @@ def person_update():
         seriesList.append(series)
 
     return render_template('people/update.html', person = person, personSeries = personSeries,
-                            series = seriesList, form = personForm)
+                            series = seriesList, form = PersonForm(request.form))
 
 @app.route('/people/', methods=['POST'])
 def person_create():
