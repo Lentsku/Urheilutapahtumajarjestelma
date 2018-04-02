@@ -19,9 +19,12 @@
   <table border="1">
     <thead>
       <tr>
-        <form method="POST" action="{{ url_for('add_series') }}">
-          <th>{{ selectSeriesForm.seriesSelector }}<input type="submit" value="Valitse"><th>
-        </form>
+        <th>
+          <form method="POST" action="{{ url_for('add_series') }}">
+            {{ selectSeriesForm.seriesSelector }}
+            <input type="submit" value="Valitse">
+          </form>
+        </th>
         <th>Etunimi</th>
         <th>Sukunimi</th>
         <th>Syntymäaika</th>
@@ -36,10 +39,14 @@
     {% for person in people %}
     <tbody>
       <tr>
-        <td colspan="2">
+        <td>
           <form method="POST" action="{{ url_for('add_person') }}">
             <input type="hidden" name="person_id" value="{{ person.id }}">
             <input type="submit" value="Lisää tapahtumaan">
+          </form>
+          <form method="POST" action="{{ url_for('person_update') }}">
+            <input type="hidden" name="person_id" value="{{ person.id }}">
+            <input type="submit" value="Päivitä tietoja">
           </form>
         </td>
         <td>{{ person.firstname }}</td>

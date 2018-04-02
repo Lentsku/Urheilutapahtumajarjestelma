@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DateField, validators
+from wtforms import StringField, DateField, SelectField, validators
 
 class PersonForm(FlaskForm):
     firstname = StringField('Etunimi', [validators.Length(min=1)])
@@ -18,5 +18,14 @@ class PersonForm(FlaskForm):
 class SearchForm(FlaskForm):
     lastFirstSearch = StringField('Sukunimi etunimi-haku')
 
+    class Meta:
+        csrf = False
+
+class SelectOptionsForm(FlaskForm):
+    optionsSelector = SelectField(
+        'Valitse sarja',
+        choices=[('add', 'Lisää tapahtumaan'), ('update', 'Muokkaa tietoja'),
+                 ('delete', 'Poista tiedot')]
+    )
     class Meta:
         csrf = False
