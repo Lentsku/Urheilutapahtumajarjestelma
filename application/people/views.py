@@ -39,8 +39,6 @@ def person_update():
         series = Series.query.filter_by(id = seriesId).first()
         seriesList.append(series)
 
-    personForm = PersonForm(firstname=person.firstname)
-
     return render_template('people/update.html', person = person, personSeries = personSeries,
                             series = seriesList, form = personForm)
 
