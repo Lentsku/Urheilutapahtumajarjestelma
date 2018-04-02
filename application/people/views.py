@@ -13,8 +13,9 @@ seriesIdGlobal = -1
 
 @app.route('/people', methods=['GET'])
 def person_index():
-    return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
-                            searchForm = SearchForm(), people = Person.query.all())
+    selectSeriesForm = SelectSeriesForm(request.form, seriesSelector=seriesIdGlobal)
+    return render_template('people/list.html', selectSeriesForm = selectSeriesForm,
+                            searchForm = SearchForm(request.form), people = Person.query.all())
 
 @app.route('/people/new/')
 def person_form():
@@ -48,6 +49,7 @@ def person_create():
 def person_search():
 
     form = SearchForm(request.form)
+    selectSeriesForm = SelectSeriesForm(request.form, seriesSelector=seriesIdGlobal)
 
     if not form.validate():
         return render_template('people/list.html', form = form)
@@ -73,7 +75,7 @@ def person_search():
 
     people = people.order_by(Person.lastname).all()
 
-    return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
+    return render_template('people/list.html', selectSeriesForm = selectSeriesForm,
                             searchForm = form, people = people)
 
 @app.route('/people/add/person/', methods = ['POST'])
@@ -81,6 +83,8 @@ def add_person():
 #    if not personForm.validate() or selectSeriesForm.validate():
 #        return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
 #                                searchForm = SearchForm(), people = Person.query.all())
+    selectSeriesForm = SelectSeriesForm(request.form, seriesSelector=seriesIdGlobal)
+
     seriesId = seriesIdGlobal
     personId = request.form['person_id']
 
@@ -91,16 +95,16 @@ def add_person():
         db.session().add(personSeries)
         db.session().commit()
 
-    return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
-                            searchForm = SearchForm(), people = Person.query.all())
+    return render_template('people/list.html', selectSeriesForm = selectSeriesForm,
+                            searchForm = SearchForm(request.form), people = Person.query.all())
 
 @app.route('/people/add/series/', methods = ['POST'])
 def add_series():
     # TODO make the SelectField store the selected value upon selection without clicking a submit-button
-    selectSeriesForm = SelectSeriesForm()
+    selectSeriesForm = SelectSeriesForm(request.form)
     seriesId = selectSeriesForm.seriesSelector.data
     global seriesIdGlobal
     seriesIdGlobal = seriesId
 
-    return render_template('people/list.html', selectSeriesForm = SelectSeriesForm(),
-                            searchForm = SearchForm(), people = Person.query.all())
+    return render_template('people/list.html', selectSeriesForm = selectSeriesForm,
+                            searchForm = SearchForm(request.form), people = Person.query.all())
