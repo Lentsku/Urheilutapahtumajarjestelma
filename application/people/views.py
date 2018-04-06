@@ -9,6 +9,7 @@ from application.people.forms import PersonForm, SearchForm, SelectOptionsForm
 from application.series.forms import SelectSeriesForm
 from application.domain.textRenderer import formatName
 from application.domain.formFiller import prefillPersonForm
+from application.domain.informationFinder import findRegistrationList
 
 from flask_login import login_required
 
@@ -92,6 +93,16 @@ def person_update():
     return render_template('people/update.html', person = person,
                             series = seriesList, form = form)
 
+@app.route('/people/person/delete/', methods = ['POST'])
+def person_delete():
+    personId = request.form['person_id']
+    person = Person.query.filter_by(id = personId).first()
+
+    db.session.delete(person)
+    db.session.commit()
+
+    return redirect(url_for('person_index'))
+
 @app.route('/people/search/', methods = ['POST'])
 def person_search():
     searchForm = SearchForm(request.form)
@@ -157,14 +168,3 @@ def add_series():
     seriesIdGlobal = selectSeriesForm.seriesSelector.data
 
     return redirect(url_for('person_index'))
-
-def findRegistrationList(personId):
-    personSeriesList = PersonSeries.query.filter_by(person_id = personId).all()
-    seriesList = []
-
-    for personSeries in personSeriesList:
-        seriesId = personSeries.series_id
-        series = Series.query.filter_by(id = seriesId).first()
-        seriesList.append(series)
-
-    return seriesList

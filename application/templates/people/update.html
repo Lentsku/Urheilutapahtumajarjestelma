@@ -128,9 +128,15 @@
         <input type="hidden" name="person_id" value="{{ person.id }}">
         <input type="submit" value="Päivitä tiedot"
       </td>
+      </form>
+      <td>
+        <form method="POST" action="{{ url_for('person_delete') }}">
+          <input type="hidden" name="person_id" value="{{ person.id }}">
+          <input type="submit" value="Poista henkilö">
+        </form>
+      </td>
     </tr>
   </table>
-</form>
 <p></p>
 <table border="1">
   <thead>
