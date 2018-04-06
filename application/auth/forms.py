@@ -11,7 +11,10 @@ class LoginForm(FlaskForm):
 class RegisterForm(FlaskForm):
     name = StringField('Nimi', [validators.Length(min=1)])
     username = StringField('Käyttäjänimi', [validators.Length(min=1)])
-    password = PasswordField('Salasana', [validators.Length(min=1)])
+    password = PasswordField('Salasana', [
+        validators.DataRequired(),
+        validators.EqualTo('confirm', message='Salasanat eivät täsmänneet toisiinsa')
+    ])
     confirm = PasswordField('Kirjoita salasana uudelleen')
 
     class Meta:
