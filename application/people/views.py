@@ -8,6 +8,7 @@ from application.series.models import Series
 from application.people.forms import PersonForm, SearchForm, SelectOptionsForm
 from application.series.forms import SelectSeriesForm
 from application.domain.textRenderer import formatName
+from application.domain.formFiller import prefillPersonForm
 
 from flask_login import login_required
 
@@ -56,9 +57,11 @@ def person_information():
     personId = request.form['person_id']
     person = Person.query.filter_by(id = personId).first()
     seriesList = findRegistrationList(personId)
+    form = PersonForm(request.form)
+    prefillPersonForm(form, person)
 
     return render_template('people/update.html', person = person,
-                            series = seriesList, form = PersonForm(request.form))
+                            series = seriesList, form = form)
 
 @app.route('/people/update/', methods=['POST'])
 def person_update():
@@ -68,6 +71,7 @@ def person_update():
     seriesList = findRegistrationList(personId)
 
     if not form.validate():
+        prefillPersonForm(form, person)
         return render_template('people/update.html', person = person,
                                 series = seriesList, form = form)
 
@@ -82,6 +86,8 @@ def person_update():
     person.country = formatName(form.country.data)
 
     db.session.commit()
+
+    prefillPersonForm(form, person)
 
     return render_template('people/update.html', person = person,
                             series = seriesList, form = form)

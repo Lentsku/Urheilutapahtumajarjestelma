@@ -1,0 +1,10 @@
+def prefillPersonForm(form, person):
+    form.firstname.data = person.firstname
+    form.lastname.data = person.lastname
+    form.birthdate.data = person.birthdate
+    form.email.data = person.email
+    form.phone.data = person.phone
+    form.address.data = person.address
+    form.postalCode.data = person.postalCode
+    form.postOffice.data = person.postOffice
+    form.country.data = person.country
