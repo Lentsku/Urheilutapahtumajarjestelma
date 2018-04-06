@@ -7,7 +7,7 @@ from application.series.models import Series
 class SeriesForm(FlaskForm):
     seriesName = StringField('Sarjan nimi', [validators.Length(min=1)])
     eventName = StringField('Tapahtuman nimi', [validators.Length(min=1)])
-    startTime = DateTimeField('Lähtöaika', [validators.Length(min=1)])
+    startTime = DateTimeField('Lähtöaika') # Automatically validated
     totalDistance = FloatField('Kokonaismatka', [validators.Length(min=1)])
 
     class Meta:

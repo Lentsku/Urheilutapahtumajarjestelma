@@ -4,7 +4,7 @@ from wtforms import StringField, DateField, SelectField, validators
 class PersonForm(FlaskForm):
     firstname = StringField('Etunimi', [validators.Length(min=1)])
     lastname = StringField('Sukunimi', [validators.Length(min=1)])
-    birthdate = DateField('Syntymäaika', [validators.Length(min=1)])
+    birthdate = DateField('Syntymäaika', format='%Y-%m-%d')
     email = StringField('Sähköposti', [validators.Length(min=1)])
     phone = StringField('Puhelin', [validators.Length(min=1)])
     address = StringField('Osoite', [validators.Length(min=1)])
