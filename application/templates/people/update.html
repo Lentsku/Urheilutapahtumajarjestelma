@@ -21,7 +21,7 @@
   </tbody>
   {% endfor %}
 </table>
-<form method="POST" action="{{ url_for('person_create') }}">
+<form method="POST" action="{{ url_for('person_update') }}">
   <table>
     <tr>
       <td></td>
@@ -214,6 +214,7 @@
     </tr>
     <tr>
       <td colspan="2">
+        <input type="hidden" name="person_id" value="{{ person.id }}">
         <input type="submit" value="Päivitä tiedot"
       </td>
     </tr>

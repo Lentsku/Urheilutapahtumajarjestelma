@@ -27,21 +27,6 @@ def person_index():
 def person_form():
     return render_template('people/new.html', form = PersonForm())
 
-@app.route('/people/update/', methods=['POST'])
-def person_update():
-    personId = request.form['person_id']
-    person = Person.query.filter_by(id = personId).first()
-    personSeriesList = PersonSeries.query.filter_by(person_id = personId).all()
-    seriesList = []
-
-    for personSeries in personSeriesList:
-        seriesId = personSeries.series_id
-        series = Series.query.filter_by(id = seriesId).first()
-        seriesList.append(series)
-
-    return render_template('people/update.html', person = person, personSeries = personSeries,
-                            series = seriesList, form = PersonForm(request.form))
-
 @app.route('/people/', methods=['POST'])
 def person_create():
     form = PersonForm(request.form)
@@ -65,6 +50,41 @@ def person_create():
     db.session().commit()
 
     return redirect(url_for('person_index'))
+
+@app.route('/people/information', methods=['POST'])
+def person_information():
+    personId = request.form['person_id']
+    person = Person.query.filter_by(id = personId).first()
+    seriesList = findRegistrationList(personId)
+
+    return render_template('people/update.html', person = person,
+                            series = seriesList, form = PersonForm(request.form))
+
+@app.route('/people/update/', methods=['POST'])
+def person_update():
+    personId = request.form['person_id']
+    form = PersonForm(request.form)
+    person = Person.query.filter_by(id = personId).first()
+    seriesList = findRegistrationList(personId)
+
+    if not form.validate():
+        return render_template('people/update.html', person = person,
+                                series = seriesList, form = form)
+
+    person.firstname = formatName(form.firstname.data)
+    person.lastname = formatName(form.lastname.data)
+    person.birthdate = form.birthdate.data
+    person.email = form.email.data
+    person.phone = form.phone.data
+    person.address = formatName(form.address.data)
+    person.postalCode = form.postalCode.data
+    person.postOffice = formatName(form.postOffice.data)
+    person.country = formatName(form.country.data)
+
+    db.session.commit()
+
+    return render_template('people/update.html', person = person,
+                            series = seriesList, form = form)
 
 @app.route('/people/search/', methods = ['POST'])
 def person_search():
@@ -131,3 +151,14 @@ def add_series():
     seriesIdGlobal = selectSeriesForm.seriesSelector.data
 
     return redirect(url_for('person_index'))
+
+def findRegistrationList(personId):
+    personSeriesList = PersonSeries.query.filter_by(person_id = personId).all()
+    seriesList = []
+
+    for personSeries in personSeriesList:
+        seriesId = personSeries.series_id
+        series = Series.query.filter_by(id = seriesId).first()
+        seriesList.append(series)
+
+    return seriesList

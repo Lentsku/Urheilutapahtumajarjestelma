@@ -44,7 +44,7 @@
             <input type="hidden" name="person_id" value="{{ person.id }}">
             <input type="submit" value="Lisää tapahtumaan">
           </form>
-          <form method="POST" action="{{ url_for('person_update') }}">
+          <form method="POST" action="{{ url_for('person_information') }}">
             <input type="hidden" name="person_id" value="{{ person.id }}">
             <input type="submit" value="Päivitä tietoja">
           </form>
