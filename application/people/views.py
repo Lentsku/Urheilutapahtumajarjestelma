@@ -65,6 +65,7 @@ def person_information():
                             series = seriesList, form = form)
 
 @app.route('/people/update/', methods=['POST'])
+@login_required
 def person_update():
     personId = request.form['person_id']
     form = PersonForm(request.form)
@@ -94,6 +95,7 @@ def person_update():
                             series = seriesList, form = form)
 
 @app.route('/people/person/delete/', methods = ['POST'])
+@login_required
 def person_delete():
     personId = request.form['person_id']
     person = Person.query.filter_by(id = personId).first()
@@ -136,6 +138,7 @@ def person_search():
                             searchForm = searchForm, people = people)
 
 @app.route('/people/add/person/', methods = ['POST'])
+@login_required
 def add_person():
     seriesId = seriesIdGlobal
     personId = request.form['person_id']
