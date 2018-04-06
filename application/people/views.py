@@ -98,8 +98,13 @@ def person_update():
 @login_required
 def person_delete():
     personId = request.form['person_id']
-    person = Person.query.filter_by(id = personId).first()
+    personSeriesList = PersonSeries.query.filter_by(person_id = personId).all()
 
+    for personSeries in personSeriesList:
+        db.session.delete(personSeries)
+
+    person = Person.query.filter_by(id = personId).first()
+    
     db.session.delete(person)
     db.session.commit()
 
@@ -154,7 +159,7 @@ def add_person():
 
 @app.route('/people/select/option/', methods = ['POST'])
 def select_option():
-    # TODO make the SelectField store the selected value upon selection without clicking a submit-button
+    # TODO make the SpersonSeriesList = PersonSeries.query.filter_by(person_id = personId).all()electField store the selected value upon selection without clicking a submit-button
     selectOptionsForm = SelectOptionsForm(request.form)
 
     global selectedOptionGlobal
