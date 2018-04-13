@@ -21,4 +21,27 @@
   </tbody>
   {% endfor %}
 </table>
+<p></p>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Sarja</th>
+      <th>Tapahtuma</th>
+      <th>Lähtöaika</th>
+      <th>Kokonaismatka</th>
+      <th>Ilmoittautuneet</th>
+    </tr>
+  </thead>
+  {% for series in registeryCount %}
+  <tbody>
+    <tr>
+      <td>{{ series.seriesName }}</td>
+      <td>{{ series.eventName }}</td>
+      <td>{{ series.startTime }}</td>
+      <td>{{ series.totalDistance }}</td>
+      <td>{{ series.registered }}</td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
 {% endblock %}

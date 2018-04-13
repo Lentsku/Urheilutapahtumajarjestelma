@@ -29,15 +29,16 @@ class Series(db.Model):
     @staticmethod
     def find_amount_of_people_registered():
         stmt = text(
-            'SELECT Series.name, COUNT(PersonSeries.person_id) AS registered FROM PersonSeries'
-            ' LEFT JOIN Series ON PersonSeries.series_id = Series.id'
+            'SELECT Series.seriesName, Series.eventName, Series.startTime, Series.totalDistance, COUNT(PersonSeries.person_id) AS registered'
+            ' FROM Series'
+            ' LEFT JOIN PersonSeries ON PersonSeries.series_id = Series.id'
             ' GROUP BY Series.id'
-            ' ORDER BY registered DESC'
+            ' ORDER BY Series.startTime DESC'
         )
         res = db.engine.execute(stmt)
 
         response = []
         for row in res:
-            response.append({'name':row[0], 'registered':row[1]})
+            response.append({'seriesName':row[0], 'eventName':row[1], 'startTime':row[2], 'totalDistance':row[3], 'registered':row[4]})
 
         return response

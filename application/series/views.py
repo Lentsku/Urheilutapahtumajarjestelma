@@ -7,7 +7,8 @@ from application.domain.textRenderer import formatName
 
 @app.route('/series', methods=['GET'])
 def series_index():
-    return render_template('series/list.html', series = Series.query.all())
+    return render_template('series/list.html', series = Series.query.all(),
+                            registeryCount=Series.find_amount_of_people_registered())
 
 @app.route('/series/new/')
 def series_form():
