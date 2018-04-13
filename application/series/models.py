@@ -1,6 +1,9 @@
 from application import db
+from application.models import Base
 
 from application.personSeries.models import PersonSeries
+
+from sqlalchemy.sql import text
 
 class Series(db.Model):
 
@@ -22,3 +25,19 @@ class Series(db.Model):
 
     def get_id(self):
         return self.id
+
+    @staticmethod
+    def find_amount_of_people_registered():
+        stmt = text(
+            'SELECT Series.name, COUNT(PersonSeries.person_id) AS registered FROM PersonSeries'
+            ' LEFT JOIN Series ON PersonSeries.series_id = Series.id'
+            ' GROUP BY Series.id'
+            ' ORDER BY registered DESC'
+        )
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({'name':row[0], 'registered':row[1]})
+
+        return response
