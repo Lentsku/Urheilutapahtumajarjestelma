@@ -54,21 +54,31 @@ def login_required(role='ANY'):
         return decorated_view
     return wrapper
 
-# application functions
-from application import views
-
 from application.people import models
-from application.people import views
 
 from application.series import models
-from application.series import views
 
 from application.results import models
-from application.results import views
 
 from application.personSeries import models
 
 from application.auth import models
+
+# creating the database tables
+try:
+    db.create_all()
+except:
+    pass
+
+# application functions
+from application import views
+
+from application.people import views
+
+from application.series import views
+
+from application.results import views
+
 from application.auth import views
 
 from application.auth.models import User
@@ -76,9 +86,3 @@ from application.auth.models import User
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
-
-# creating the database tables
-try:
-    db.create_all()
-except:
-    pass
