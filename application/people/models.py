@@ -1,8 +1,12 @@
 from application import db
+from application.models import Base
 
 from application.personSeries.models import PersonSeries
 
 class Person(db.Model):
+
+    __tablename__ = 'person'
+
     id = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.String(63), nullable=False)
     lastname = db.Column(db.String(63), nullable=False)

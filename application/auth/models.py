@@ -1,6 +1,8 @@
 from application import db
 from application.models import Base
 
+from sqlalchemy.sql import text
+
 class User(Base):
 
     __tablename__ = 'Account'
@@ -25,3 +27,6 @@ class User(Base):
 
     def is_authenticated(self):
         return True
+
+    def roles(self):
+        return ['ADMIN']

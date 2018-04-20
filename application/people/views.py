@@ -1,6 +1,6 @@
 from flask import redirect, render_template, request, url_for
 
-from application import app, db
+from application import app, db, login_required
 from application.people.models import Person
 from application.personSeries.models import PersonSeries
 from application.series.models import Series
@@ -10,8 +10,6 @@ from application.series.forms import SelectSeriesForm
 from application.domain.textRenderer import formatName
 from application.domain.formFiller import prefillPersonForm
 from application.domain.informationFinder import findRegistrationList
-
-from flask_login import login_required
 
 seriesIdGlobal = -1
 selectedOptionGlobal = 'add'
@@ -65,7 +63,7 @@ def person_information():
                             series = seriesList, form = form)
 
 @app.route('/people/update/', methods=['POST'])
-@login_required
+@login_required(role='ADMIN')
 def person_update():
     personId = request.form['person_id']
     form = PersonForm(request.form)
@@ -95,7 +93,7 @@ def person_update():
                             series = seriesList, form = form)
 
 @app.route('/people/person/delete/', methods = ['POST'])
-@login_required
+@login_required(role='ADMIN')
 def person_delete():
     personId = request.form['person_id']
     personSeriesList = PersonSeries.query.filter_by(person_id = personId).all()
@@ -104,7 +102,7 @@ def person_delete():
         db.session.delete(personSeries)
 
     person = Person.query.filter_by(id = personId).first()
-    
+
     db.session.delete(person)
     db.session.commit()
 
@@ -143,7 +141,7 @@ def person_search():
                             searchForm = searchForm, people = people)
 
 @app.route('/people/add/person/', methods = ['POST'])
-@login_required
+@login_required(role='ADMIN')
 def add_person():
     seriesId = seriesIdGlobal
     personId = request.form['person_id']
