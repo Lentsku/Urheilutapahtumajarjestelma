@@ -13,3 +13,12 @@ class Results(Base):
     achievementMark = db.Column(db.Boolean, default=False)
 
     personSeries = db.relationship('PersonSeries', backref='Series', lazy=True)
+
+    def __init__(self, placement, startTime, finishTime, achievementMark):
+        self.placement = placement
+        self.startTime = startTime
+        self.finishTime = finishTime
+        self.achievementMark = achievementMark
+
+    def get_id(self):
+        return self.id
