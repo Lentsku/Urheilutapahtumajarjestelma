@@ -54,25 +54,15 @@ def login_required(role='ANY'):
         return decorated_view
     return wrapper
 
-# application functions
-from application import views
-
 from application.people import models
+
 from application.series import models
 
-try:
-    from application.people import views
-    from application.series import views
-except:
-    pass
-
 from application.results import models
-from application.results import views
 
 from application.personSeries import models
 
 from application.auth import models
-from application.auth import views
 
 from application.auth.models import User
 
@@ -85,3 +75,14 @@ try:
     db.create_all()
 except:
     pass
+
+# application functions
+from application import views
+
+from application.people import views
+
+from application.series import views
+
+from application.results import views
+
+from application.auth import views

@@ -12,7 +12,7 @@ class Results(Base):
     finishTime = db.Column(db.DateTime, index=True, nullable=True)
     achievementMark = db.Column(db.Boolean, default=False)
 
-    personSeries = db.relationship('PersonSeries', backref='Series', lazy=True)
+    personSeries = db.relationship('PersonSeries', backref='Results', lazy=True)
 
     def __init__(self, placement, startTime, finishTime, achievementMark):
         self.placement = placement
