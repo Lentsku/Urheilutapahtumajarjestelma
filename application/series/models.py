@@ -5,11 +5,10 @@ from application.personSeries.models import PersonSeries
 
 from sqlalchemy.sql import text
 
-class Series(db.Model):
+class Series(Base):
 
     __tablename__ = 'Series'
 
-    id = db.Column(db.Integer, primary_key=True)
     seriesName = db.Column(db.String(255), nullable=False)
     eventName = db.Column(db.String(255), nullable=False)
     startTime = db.Column(db.DateTime, index=True, nullable=False)

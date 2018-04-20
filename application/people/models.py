@@ -3,11 +3,10 @@ from application.models import Base
 
 from application.personSeries.models import PersonSeries
 
-class Person(db.Model):
+class Person(Base):
 
-    __tablename__ = 'person'
+    __tablename__ = 'Person'
 
-    id = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.String(63), nullable=False)
     lastname = db.Column(db.String(63), nullable=False)
     birthdate = db.Column(db.Date, index=True, nullable=False)
