@@ -1,8 +1,6 @@
 from application import db
 from application.models import Base
 
-from application.personSeries.models import PersonSeries
-
 from sqlalchemy.sql import text
 
 class Series(Base):
@@ -14,7 +12,7 @@ class Series(Base):
     startTime = db.Column(db.DateTime, index=True, nullable=False)
     totalDistance = db.Column(db.Float, nullable=False)
 
-    personSeries = db.relationship('PersonSeries', backref='Series', lazy=True)
+    registration = db.relationship('Registration', backref='Series', lazy=True)
 
     def __init__(self, seriesName, eventName, startTime, totalDistance):
         self.seriesName = seriesName
@@ -28,9 +26,9 @@ class Series(Base):
     @staticmethod
     def find_amount_of_people_registered():
         stmt = text(
-            'SELECT Series.seriesName, Series.eventName, Series.startTime, Series.totalDistance, COUNT(PersonSeries.person_id) AS registered'
+            'SELECT Series.seriesName, Series.eventName, Series.startTime, Series.totalDistance, COUNT(Registration.person_id) AS registered'
             ' FROM Series'
-            ' LEFT JOIN PersonSeries ON PersonSeries.series_id = Series.id'
+            ' LEFT JOIN Registration ON Registration.series_id = Series.id'
             ' GROUP BY Series.id'
             ' ORDER BY Series.startTime DESC'
         )

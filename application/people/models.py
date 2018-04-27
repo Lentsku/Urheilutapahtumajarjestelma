@@ -1,8 +1,5 @@
 from application import db
 from application.models import Base
-from sqlalchemy.orm import backref
-
-from application.personSeries.models import PersonSeries
 
 class Person(Base):
 
@@ -18,7 +15,7 @@ class Person(Base):
     postOffice = db.Column(db.String(144), nullable=False)
     country = db.Column(db.String(144), nullable=True)
 
-    personSeries = db.relationship('PersonSeries', backref='Person', lazy=True)
+    registration = db.relationship('Registration', backref='Person', lazy=True)
 
     def __init__(self, firstname, lastname, birthdate, email, phone, address, postalCode, postOffice, country):
         self.firstname = firstname

@@ -20,7 +20,7 @@ db = SQLAlchemy(app)
 from os import urandom
 app.config['SECRET_KEY'] = urandom(32)
 
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -34,7 +34,7 @@ def login_required(role='ANY'):
     def wrapper(fn):
         @wraps(fn)
         def decorated_view(*args, **kwargs):
-            if not currend_user.is_authenticated():
+            if not current_user.is_authenticated:
                 return login_manager.unauthorized()
 
             unauthorized = False
@@ -58,11 +58,11 @@ from application.people import models
 
 from application.series import models
 
-from application.results import models
-
 from application.history import models
 
-from application.personSeries import models
+from application.registration import models
+
+from application.results import models
 
 from application.auth import models
 

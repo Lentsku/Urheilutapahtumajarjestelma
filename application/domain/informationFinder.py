@@ -1,13 +1,13 @@
 from application.people.models import Person
-from application.personSeries.models import PersonSeries
+from application.registration.models import Registration
 from application.series.models import Series
 
 def findRegistrationList(personId):
-    personSeriesList = PersonSeries.query.filter_by(person_id = personId).all()
+    registrationList = Registration.query.filter_by(person_id = personId).all()
     seriesList = []
 
-    for personSeries in personSeriesList:
-        seriesId = personSeries.series_id
+    for registration in registrationList:
+        seriesId = registration.series_id
         series = Series.query.filter_by(id = seriesId).first()
         seriesList.append(series)
 

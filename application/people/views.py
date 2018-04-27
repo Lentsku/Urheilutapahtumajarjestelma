@@ -2,7 +2,7 @@ from flask import redirect, render_template, request, url_for
 
 from application import app, db, login_required
 from application.people.models import Person
-from application.personSeries.models import PersonSeries
+from application.registration.models import Registration
 from application.series.models import Series
 
 from application.people.forms import PersonForm, SearchForm, SelectOptionsForm
@@ -96,10 +96,10 @@ def person_update():
 @login_required(role='ADMIN')
 def person_delete():
     personId = request.form['person_id']
-    personSeriesList = PersonSeries.query.filter_by(person_id = personId).all()
+    registrationList = Registration.query.filter_by(person_id = personId).all()
 
-    for personSeries in personSeriesList:
-        db.session.delete(personSeries)
+    for registration in registrationList:
+        db.session.delete(registration)
 
     person = Person.query.filter_by(id = personId).first()
 
@@ -147,17 +147,17 @@ def add_person():
     personId = request.form['person_id']
 
     if not seriesId == -1:
-        personSeries = PersonSeries(1)
-        personSeries.series_id = seriesId
-        personSeries.person_id = personId
-        db.session().add(personSeries)
+        registration = Registration(1)
+        registration.series_id = seriesId
+        registration.person_id = personId
+        db.session().add(registration)
         db.session().commit()
 
     return redirect(url_for('person_index'))
 
 @app.route('/people/select/option/', methods = ['POST'])
 def select_option():
-    # TODO make the SpersonSeriesList = PersonSeries.query.filter_by(person_id = personId).all()electField store the selected value upon selection without clicking a submit-button
+    # TODO make the RegistrationList = Registration.query.filter_by(person_id = personId).all()electField store the selected value upon selection without clicking a submit-button
     selectOptionsForm = SelectOptionsForm(request.form)
 
     global selectedOptionGlobal
