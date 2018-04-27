@@ -60,6 +60,8 @@ from application.series import models
 
 from application.results import models
 
+from application.history import models
+
 from application.personSeries import models
 
 from application.auth import models

@@ -1,5 +1,6 @@
 from application import db
 from application.models import Base
+from sqlalchemy.orm import backref
 
 from application.personSeries.models import PersonSeries
 
