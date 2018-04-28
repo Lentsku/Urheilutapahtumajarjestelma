@@ -14,11 +14,11 @@ class Results(Base):
     registration_id = db.Column(db.Integer, db.ForeignKey('Registration.id'))
     registration = db.relationship('Registration', backref=backref('Results', uselist=False))
 
-#    def __init__(self, placement, startTime, finishTime, achievementMark):
-#        self.placement = placement
-#        self.startTime = startTime
-#        self.finishTime = finishTime
-#        self.achievementMark = achievementMark
+    def __init__(self, placement, startTime, finishTime, achievementMark):
+        self.placement = placement
+        self.startTime = startTime
+        self.finishTime = finishTime
+        self.achievementMark = achievementMark
 
     def get_id(self):
         return self.id
