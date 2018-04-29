@@ -20,7 +20,7 @@ Toiminnot:
 ## Linkit
 
 * [Sovellus Herokussa](https://urheilutapahtumajarjestelma.herokuapp.com/)
-* [Tietokantakaavio](https://github.com/Lentsku/Urheilutapahtumajarjestelma/blob/master/documentation/Tapahtumakaavio.png)
+* [Tietokantakaavio](https://github.com/Lentsku/Urheilutapahtumajarjestelma/blob/master/documentation/RelationDiagram.png)
 * [User storyt](https://github.com/Lentsku/Urheilutapahtumajarjestelma/blob/master/documentation/userstory.md)
 
 ### Projektin branchit
